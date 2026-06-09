@@ -1,0 +1,284 @@
+﻿/* renderer/src/styles.css
+   OWASP Hydra Engine — Ghost / Ultra Beast Mode theme
+   Drop this file into renderer/src/styles.css
+*/
+
+/* ---------- color tokens ---------- */
+:root{
+  --bg-0: #030406;
+  --bg-1: #05060a;
+  --bg-2: #07111a;
+  --panel: #0b0f13;
+  --muted: #9aa0a6;
+  --accent: #ff2d95;
+  --accent-2: #7c5cff;
+  --accent-green: #22c55e;
+  --danger: #e24c4c;
+  --soft-border: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.02);
+  --log-green: #7fffd4;
+}
+
+/* ---------- base ---------- */
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg-0), var(--bg-2));
+  color: #e6edf3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- container / header ---------- */
+.app-root {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 16px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  border: 1px solid var(--soft-border);
+}
+
+.brand { display:flex; gap:12px; align-items:center; }
+.logo {
+  width:44px; height:44px; border-radius:10px;
+  background: linear-gradient(135deg,#06121a,#001219);
+  display:flex; align-items:center; justify-content:center; font-size:20px;
+  box-shadow: inset 0 -6px 18px rgba(0,0,0,0.6), 0 6px 18px rgba(0,0,0,0.35);
+}
+.title { font-size:20px; color:var(--accent); font-weight:700; letter-spacing:0.2px; }
+.subtitle { font-size:12px; color:var(--muted); }
+
+/* header small info */
+.header-actions .small { color: var(--muted); font-size:13px; }
+
+/* ---------- main layout ---------- */
+.app-main {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* panels */
+.panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--soft-border);
+  color: #e6edf3;
+}
+.panel-title { font-weight:700; color:var(--accent); margin-bottom:6px; }
+.muted { color: var(--muted); font-size: 13px; }
+
+/* ---------- controls / buttons ---------- */
+.controls { display:flex; gap:8px; align-items:center; }
+.btn {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15,10,30,0.45);
+  transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms;
+  font-weight: 600;
+  font-size: 13px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(15,10,30,0.55); }
+.btn:active { transform: translateY(0); }
+.btn.small { padding: 6px 8px; font-size: 13px; }
+.btn.alt { background: #1f2937; box-shadow: none; color: #e6edf3; }
+.btn.warn { background: #ff6b6b; }
+.btn.danger { background: var(--danger); }
+.btn[disabled] { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ---------- inputs ---------- */
+.input {
+  background: #07090b;
+  border: 1px solid #121214;
+  padding: 8px;
+  border-radius: 8px;
+  color: #e6edf3;
+  outline: none;
+  font-size: 14px;
+}
+.input::placeholder { color: rgba(230,237,243,0.35); }
+
+/* ---------- folder grid / cards ---------- */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.folder-card {
+  background: #071018;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.mono { font-family: monospace; }
+
+/* progress */
+.progress-wrap {
+  background: #071018;
+  border-radius: 6px;
+  height: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.02);
+  margin-top: 6px;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 400ms ease;
+  box-shadow: 0 4px 14px rgba(124,92,255,0.08);
+}
+
+/* ---------- console / logs ---------- */
+.console .panel-title { margin-bottom: 0; }
+
+.logbox {
+  height: 260px;
+  overflow: auto;
+  background: #010101;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+  color: var(--log-green);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+/* subtle glow for new lines — use .logline on each printed line if possible */
+.logline {
+  display: block;
+  animation: logFade 420ms ease;
+  opacity: 0;
+  transform: translateY(6px);
+}
+@keyframes logFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* nicer scrollbar for logbox */
+.logbox::-webkit-scrollbar { width: 10px; height: 10px; }
+.logbox::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,0.2);
+}
+.logbox::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- targets list ---------- */
+.targets .target-item {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: #070707;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.target-item .muted { color: var(--muted); }
+
+/* ---------- tabs ---------- */
+.tabs { display:flex; gap:4px; align-items:center; margin-left:8px; }
+.tab {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.tab.active {
+  background: rgba(255,255,255,0.03);
+  color: var(--accent);
+}
+
+/* ---------- small responsive ---------- */
+@media (max-width: 1000px) {
+  .app-main { grid-template-columns: 1fr; }
+  .folder-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- splash loader ---------- */
+.splash {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.2));
+}
+.splash-card {
+  background: rgba(255,255,255,0.02);
+  padding: 28px;
+  border-radius: 12px;
+  text-align:center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.splash-logo { font-weight:800; color:var(--accent); font-size:20px; letter-spacing:1px; }
+.splash-sub { color:var(--muted); margin-top:6px; }
+
+/* spinner */
+.spinner { margin: 18px auto 0; height: 28px; width: 28px; position: relative; }
+.spinner span {
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  box-shadow: 0 0 0 3px rgba(255,45,149,0.12);
+  animation: spin 1.2s linear infinite;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ---------- small utility classes ---------- */
+.hidden { display: none !important; }
+.row { display:flex; gap:8px; align-items:center; }
+.col { display:flex; flex-direction:column; gap:8px; }
+
+/* ---------- accessibility ---------- */
+button:focus, .input:focus { outline: 3px solid rgba(255,45,149,0.12); outline-offset: 2px; }
+
+/* ---------- decorative glow (subtle) ---------- */
+.panel::before {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: 10px;
+  mix-blend-mode: overlay;
+  opacity: 0.02;
+}
+
+/* ---------- terminal-like caret (optional styled helper) ---------- */
+.typed-caret {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background: var(--accent);
+  margin-left: 6px;
+  animation: blink 900ms steps(2,start) infinite;
+  vertical-align: middle;
+}
+@keyframes blink { 0% { opacity: 1 } 50% { opacity: 0 } 100% { opacity: 1 } }
