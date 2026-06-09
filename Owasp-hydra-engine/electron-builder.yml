@@ -1,0 +1,11 @@
+﻿linux:
+  target:
+    - AppImage
+  category: Utility
+appId: com.yourname.owasphydra
+productName: OWASP Hydra Engine
+files:
+  - main.js
+  - preload.js
+  - server.js
+  - renderer/dist

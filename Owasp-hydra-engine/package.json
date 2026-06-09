@@ -1,0 +1,46 @@
+{
+  "name": "owasp-hydra-engine",
+  "version": "1.0.0",
+  "description": "OWASP Hydra Engine - Electron GUI for OWASP TOP 10 runner (Linux AppImage)",
+  "main": "main.js",
+  "author": "You",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "cd renderer && npm install",
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:main": "electron .",
+    "dev:renderer": "cd renderer && npm run dev",
+    "build:renderer": "cd renderer && npm run build",
+    "pack": "npm run build:renderer && electron-builder --dir",
+    "dist": "npm run build:renderer && electron-builder --linux AppImage",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "electron-log": "^4.4.8",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "electron": "^38.2.2",
+    "electron-builder": "^24.6.0"
+  },
+  "build": {
+    "appId": "com.yourname.owasphydra",
+    "productName": "OWASP Hydra Engine",
+    "files": [
+      "main.js",
+      "preload.js",
+      "server.js",
+      "renderer/dist/**/*",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility"
+    }
+  }
+}

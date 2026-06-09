@@ -1,0 +1,4 @@
+/*
+vite.config.js placeholder
+Paste the Vite config from the canvas document.
+*/
